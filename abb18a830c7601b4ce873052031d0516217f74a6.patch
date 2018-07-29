@@ -1,0 +1,22 @@
+From abb18a830c7601b4ce873052031d0516217f74a6 Mon Sep 17 00:00:00 2001
+From: Alexander Neumann <alexander@bumpern.de>
+Date: Sat, 14 Jul 2018 11:51:34 +0200
+Subject: [PATCH] Fix test
+
+---
+ internal/restic/node_unix_test.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/internal/restic/node_unix_test.go b/internal/restic/node_unix_test.go
+index 4c44d5a34..0908d378e 100644
+--- a/internal/restic/node_unix_test.go
++++ b/internal/restic/node_unix_test.go
+@@ -112,7 +112,7 @@ func TestNodeFromFileInfo(t *testing.T) {
+ 
+ 			s, ok := fi.Sys().(*syscall.Stat_t)
+ 			if !ok {
+-				t.Skip("fi type is %T, not stat_t", fi.Sys())
++				t.Skipf("fi type is %T, not stat_t", fi.Sys())
+ 				return
+ 			}
+ 
