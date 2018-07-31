@@ -5,7 +5,7 @@ Version:                0.9.1
 %gometa
 
 Name:    restic
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
@@ -105,6 +105,9 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Tue Jul 31 2018 Florian Weimer <fweimer@redhat.com> - 0.9.1-3
+- Rebuild with fixed binutils
+
 * Wed Jun 13 2018 Steve Miller (copart) <code@rellims.com> - 0.9.1-2
 - First package for Fedora
 - Rework using More Go packaging
