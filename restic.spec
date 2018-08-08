@@ -1,17 +1,15 @@
 # https://github.com/restic/restic
 %global goipath         github.com/restic/restic
-Version:                0.9.1
+Version:                0.9.2
 
 %gometa
 
 Name:    restic
-Release: 2%{?dist}
+Release: 1%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
-Source0: https://%{goipath}/archive/v%{version}.tar.gz#/%{name}-%{version}.tar.gz
-#https://github.com/restic/restic/issues/1886
-Patch0: https://%{goipath}/commit/abb18a830c7601b4ce873052031d0516217f74a6.patch
+Source0: %{gosource}
 
 #Restic does not compile for the following archs
 ExcludeArch: s390x
@@ -69,7 +67,6 @@ Backup destinations can be:
 %prep
 %gosetup -q
 rm -rf vendor
-%patch0 -p1
 
 %build 
 %gobuildroot
@@ -105,6 +102,9 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Wed Aug 8 2018 Steve Miller (copart) <code@rellims.com> - 0.9.2-1
+- Bumped to upstream 0.9.2
+
 * Wed Jun 13 2018 Steve Miller (copart) <code@rellims.com> - 0.9.1-2
 - First package for Fedora
 - Rework using More Go packaging
