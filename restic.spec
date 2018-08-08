@@ -105,6 +105,9 @@ export RESTIC_TEST_FUSE=0
 * Wed Aug 8 2018 Steve Miller (copart) <code@rellims.com> - 0.9.2-1
 - Bumped to upstream 0.9.2
 
+* Tue Jul 31 2018 Florian Weimer <fweimer@redhat.com> - 0.9.1-3
+- Rebuild with fixed binutils
+
 * Wed Jun 13 2018 Steve Miller (copart) <code@rellims.com> - 0.9.1-2
 - First package for Fedora
 - Rework using More Go packaging
