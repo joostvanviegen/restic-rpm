@@ -1,6 +1,6 @@
 # https://github.com/restic/restic
 %global goipath         github.com/restic/restic
-Version:                0.9.2
+Version:                0.9.3
 
 %gometa
 
@@ -65,7 +65,8 @@ Backup destinations can be:
 
 
 %prep
-%gosetup -q
+%forgesetup
+#%%gosetup -q
 rm -rf vendor
 
 %build 
@@ -102,6 +103,12 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Sat Nov 3 2018 Steve Miller (copart) <code@rellims.com> - 0.9.3-1
+- Bumped to upstream 0.9.3
+  Resolves: #1645405 and #1642891
+- redhat-rpm-config-123 triggers bugs in gosetup, remove it from Go spec files as it’s just an alias
+- https://lists.fedoraproject.org/archives/list/devel@xxxxxxxxxxxxxxxxxxxxxxx/message/RWD5YATAYAFWKIDZBB7EB6N5DAO4ZKFM/
+
 * Wed Aug 8 2018 Steve Miller (copart) <code@rellims.com> - 0.9.2-1
 - Bumped to upstream 0.9.2
 
