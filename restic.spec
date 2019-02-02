@@ -5,7 +5,7 @@ Version:                0.9.3
 %gometa
 
 Name:    restic
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
@@ -103,6 +103,9 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.3-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Sat Nov 3 2018 Steve Miller (copart) <code@rellims.com> - 0.9.3-1
 - Bumped to upstream 0.9.3
   Resolves: #1645405 and #1642891
