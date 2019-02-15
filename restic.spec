@@ -1,11 +1,11 @@
 # https://github.com/restic/restic
 %global goipath         github.com/restic/restic
-Version:                0.9.3
+Version:                0.9.4
 
 %gometa
 
 Name:    restic
-Release: 2%{?dist}
+Release: 1%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
@@ -29,6 +29,7 @@ BuildRequires: golang(github.com/pkg/errors)
 BuildRequires: golang(github.com/pkg/sftp)
 BuildRequires: golang(github.com/pkg/xattr)
 BuildRequires: golang(github.com/restic/chunker)
+BuildRequires: golang(github.com/hashicorp/golang-lru/simplelru)
 BuildRequires: golang(golang.org/x/crypto/poly1305)
 BuildRequires: golang(golang.org/x/crypto/scrypt)
 BuildRequires: golang(golang.org/x/crypto/ssh/terminal)
@@ -103,6 +104,11 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Fri Feb 15 2019  Steve Miller (copart) <code@rellims.com> - 0.9.4-1
+- Bumped to upstream 0.9.4
+- Added new upstream dependency 
+  golang(github.com/hashicorp/golang-lru/simplelru)
+
 * Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.3-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
 
