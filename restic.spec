@@ -1,6 +1,6 @@
 # https://github.com/restic/restic
 %global goipath         github.com/restic/restic
-Version:                0.9.4
+Version:                0.9.5
 
 %gometa
 
@@ -104,7 +104,11 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
-* Fri Feb 15 2019  Steve Miller (copart) <code@rellims.com> - 0.9.4-1
+* Tue Apr 23 2019 Steve Miller (copart) <code@rellims.com> - 0.9.5-1
+- umped to upstream 0.9.5
+  Resolves: #1702384
+
+* Fri Feb 15 2019 Steve Miller (copart) <code@rellims.com> - 0.9.4-1
 - Bumped to upstream 0.9.4
 - Added new upstream dependency 
   golang(github.com/hashicorp/golang-lru/simplelru)
