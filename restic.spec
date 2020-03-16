@@ -1,11 +1,11 @@
 # https://github.com/restic/restic
 %global goipath         github.com/restic/restic
-Version:                0.9.5
+Version:                0.9.6
 
 %gometa
 
 Name:    restic
-Release: 3%{?dist}
+Release: 1%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
@@ -104,6 +104,10 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Mon Mar 16 2020 Steve Miller (copart) <code@rellims.com> - 0.9.6-1
+- Bumped to upstream 0.9.6
+  Resolves: #1775745 and #1799976
+
 * Thu Jan 30 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.5-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_32_Mass_Rebuild
 
@@ -111,7 +115,7 @@ export RESTIC_TEST_FUSE=0
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_31_Mass_Rebuild
 
 * Tue Apr 23 2019 Steve Miller (copart) <code@rellims.com> - 0.9.5-1
-- umped to upstream 0.9.5
+- Bumped to upstream 0.9.5
   Resolves: #1702384
 
 * Fri Feb 15 2019 Steve Miller (copart) <code@rellims.com> - 0.9.4-1
