@@ -23,7 +23,7 @@ Backup destinations can be:
 
 
 Name:    restic
-Release: 2%{?dist}
+Release: 3%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
@@ -113,8 +113,11 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Tue Mar 17 2020 Steve Miller (copart) <code@rellims.com> - 0.9.6-3
+- Added upstream patch for AccessTime test fix, commit 7cacba0394b1336dfee33e81cb1dc0e87f8ba10f
+
 * Tue Mar 17 2020 Steve Miller (copart) <code@rellims.com> - 0.9.6-2
-- Added patch from upstream for tests in selinux, commit 2828a9c2b09a7e42ca8ca1c6ac506f87280c158b
+- Added upstream patch for tests in selinux, commit 2828a9c2b09a7e42ca8ca1c6ac506f87280c158b
 - Replaced deprecated gochecks and gobuildroot macros
 
 * Mon Mar 16 2020 Steve Miller (copart) <code@rellims.com> - 0.9.6-1

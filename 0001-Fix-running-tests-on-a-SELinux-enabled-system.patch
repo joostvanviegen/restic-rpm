@@ -1,11 +1,12 @@
 --- a/internal/archiver/archiver_test.go	2020-03-16 20:00:56.045135798 -0400
-+++ b/internal/archiver/archiver_test.go	2020-03-16 20:29:51.206241326 -0400
-@@ -2062,8 +2062,9 @@
++++ b/internal/archiver/archiver_test.go	2020-03-17 15:21:57.612565134 -0400
+@@ -2062,8 +2062,10 @@
  	// set some values so we can then compare the nodes
  	want.Content = node2.Content
  	want.Path = ""
 -	want.ExtendedAttributes = nil
 -
++	want.AccessTime = want.ModTime
 +	if len(want.ExtendedAttributes) == 0 {
 +		want.ExtendedAttributes = nil
 +	}
