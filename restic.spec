@@ -4,12 +4,31 @@ Version:                0.9.6
 
 %gometa
 
+%global common_description %{expand:
+A backup program that is easy, fast, verifiable, secure, efficient and free.
+
+Backup destinations can be:
+*Local
+*SFTP
+*REST Server
+*Amazon S3
+*Minio Server
+*OpenStack Swift
+*Backblaze B2
+*Microsoft Azure Blob Storage
+*Google Cloud Storage
+*Other Services via rclone}
+
+%global golicenses    LICENSE
+
+
 Name:    restic
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
 Source0: %{gosource}
+Patch0:	 0001-Fix-running-tests-on-a-SELinux-enabled-system.patch
 
 #Restic does not compile for the following archs
 ExcludeArch: s390x
@@ -50,32 +69,19 @@ BuildRequires: golang(github.com/google/go-cmp/cmp)
 
 
 %description
-A backup program that is easy, fast, verifiable, secure, efficient and free.
+%{common_description}
 
-Backup destinations can be:
-*Local
-*SFTP
-*REST Server
-*Amazon S3
-*Minio Server
-*OpenStack Swift
-*Backblaze B2
-*Microsoft Azure Blob Storage
-*Google Cloud Storage
-*Other Services via rclone
-
+#%%gopkg
 
 %prep
-%forgesetup
-#%%gosetup -q
-rm -rf vendor
+%goprep
+%patch0 -p1
 
-%build 
-%gobuildroot
-%gobuild -o _bin/%{name} %{goipath}/cmd/restic
+%build
+%gobuild -o %{gobuilddir}/bin/%{name} %{goipath}/cmd/restic
+
 
 %install
-mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_mandir}/man1
 mkdir -p %{buildroot}%{_datarootdir}/zsh/site-functions
 mkdir -p %{buildroot}%{_datarootdir}/bash-completion/completions
@@ -84,12 +90,15 @@ install -p -m 644 doc/man/* %{buildroot}%{_mandir}/man1/
 install -p -m 644 doc/zsh-completion.zsh %{buildroot}%{_datarootdir}/zsh/site-functions/_restic
 #Bash completion
 install -p -m 644 doc/bash-completion.sh %{buildroot}%{_datarootdir}/bash-completion/completions/restic
-install -p -m 755 _bin/%{name} %{buildroot}%{_bindir}
+install -m 0755 -vd %{buildroot}%{_bindir}
+install -p -m 755 %{gobuilddir}/bin/%{name} %{buildroot}%{_bindir}
+
 
 %check
 #Skip tests using fuse due to root requirement
 export RESTIC_TEST_FUSE=0
-%gochecks cmd internal
+%gocheck
+
 
 %files
 %license LICENSE
@@ -104,6 +113,10 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Tue Mar 17 2020 Steve Miller (copart) <code@rellims.com> - 0.9.6-2
+- Added patch from upstream for tests in selinux, commit 2828a9c2b09a7e42ca8ca1c6ac506f87280c158b
+- Replaced deprecated gochecks and gobuildroot macros
+
 * Mon Mar 16 2020 Steve Miller (copart) <code@rellims.com> - 0.9.6-1
 - Bumped to upstream 0.9.6
   Resolves: #1775745 and #1799976
