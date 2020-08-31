@@ -23,7 +23,7 @@ Backup destinations can be:
 
 
 Name:    restic
-Release: 5%{?dist}
+Release: 6%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
@@ -115,7 +115,7 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
-* Tue Mar 17 2020 Steve Miller (copart) <code@rellims.com> - 0.9.6-6
+* Sun Aug 30 2020 Steve Miller (copart) <code@rellims.com> - 0.9.6-6
 - Added upstream patch for AllowRoot build issue, commit 18fee4806f6a71e951eaee2a3910140c5efb46e3
 
 * Sat Aug 01 2020 Fedora Release Engineering <releng@fedoraproject.org> - 0.9.6-5
