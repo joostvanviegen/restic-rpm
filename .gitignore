@@ -6,3 +6,5 @@
 /restic-0.9.4.tar.gz
 /restic-0.9.5.tar.gz
 /restic-0.9.6.tar.gz
+/0001-Fix-running-tests-on-a-SELinux-enabled-system.patch
+/backport-2652.patch
