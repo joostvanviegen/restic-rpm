@@ -1,6 +1,6 @@
 # https://github.com/restic/restic
 %global goipath         github.com/restic/restic
-Version:                0.9.6
+Version:                0.10.0
 
 %gometa
 
@@ -23,13 +23,15 @@ Backup destinations can be:
 
 
 Name:    restic
-Release: 6%{?dist}
+Release: 1%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
 Source0: %{gosource}
-Patch0:	 0001-Fix-running-tests-on-a-SELinux-enabled-system.patch
-Patch1:	 backport-2652.patch
+#Patch0: 0001-Fix-running-tests-on-a-SELinux-enabled-system.patch
+#Patch1: backport-2652.patch
+#Upgrade github.com/cenkalti/backoff module #2934
+Patch0:  0001-Upgrade-github.com-cenkalti-backoff-module.patch
 
 #Restic does not compile for the following archs
 ExcludeArch: s390x
@@ -42,8 +44,6 @@ BuildRequires: golang(github.com/elithrar/simple-scrypt)
 BuildRequires: golang(github.com/juju/ratelimit)
 BuildRequires: golang(github.com/kurin/blazer/b2)
 BuildRequires: golang(github.com/mattn/go-isatty)
-BuildRequires: golang(github.com/minio/minio-go)
-BuildRequires: golang(github.com/minio/minio-go/pkg/credentials)
 BuildRequires: golang(github.com/ncw/swift)
 BuildRequires: golang(github.com/pkg/errors)
 BuildRequires: golang(github.com/pkg/sftp)
@@ -63,6 +63,12 @@ BuildRequires: golang(golang.org/x/text/encoding/unicode)
 BuildRequires: golang(google.golang.org/api/googleapi)
 BuildRequires: golang(google.golang.org/api/storage/v1)
 BuildRequires: golang(gopkg.in/tomb.v2)
+#Updated for 0.10.0
+BuildRequires: golang(github.com/minio/minio-go/v6)
+BuildRequires: golang(github.com/minio/minio-go/v6/pkg/credentials)
+#Added for 0.10.0
+BuildRequires: golang(github.com/cespare/xxhash)
+BuildRequires: golang(github.com/dchest/siphash)
 #for check/testing
 BuildRequires: golang(github.com/google/go-cmp/cmp)
 #Soft dependency for mounting , ie: fusemount
@@ -77,7 +83,7 @@ BuildRequires: golang(github.com/google/go-cmp/cmp)
 %prep
 %goprep
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
 
 %build
 %gobuild -o %{gobuilddir}/bin/%{name} %{goipath}/cmd/restic
@@ -115,6 +121,10 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Wed Oct 21 2020 Steve Miller (copart) <code@rellims.com> - 0.10.0-1
+- Bumped to upstream 0.10.0
+  Resolves: #1880788
+
 * Sun Aug 30 2020 Steve Miller (copart) <code@rellims.com> - 0.9.6-6
 - Added upstream patch for AllowRoot build issue, commit 18fee4806f6a71e951eaee2a3910140c5efb46e3
 

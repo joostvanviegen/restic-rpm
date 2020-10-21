@@ -8,3 +8,5 @@
 /restic-0.9.6.tar.gz
 /0001-Fix-running-tests-on-a-SELinux-enabled-system.patch
 /backport-2652.patch
+/0001-Upgrade-github.com-cenkalti-backoff-module.patch
+/restic-0.10.0.tar.gz
