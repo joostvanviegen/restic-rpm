@@ -23,7 +23,7 @@ Backup destinations can be:
 
 
 Name:    restic
-Release: 1%{?dist}
+Release: 2%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
@@ -32,6 +32,8 @@ Source0: %{gosource}
 #Patch1: backport-2652.patch
 #Upgrade github.com/cenkalti/backoff module #2934
 Patch0:  0001-Upgrade-github.com-cenkalti-backoff-module.patch
+#Move internal/fs.TestChdir to internal/test.Chdir
+Patch1:  0001-Move-internal-fs.TestChdir-to-internal-test.Chdir.patch
 
 #Restic does not compile for the following archs
 ExcludeArch: s390x
@@ -83,7 +85,7 @@ BuildRequires: golang(github.com/google/go-cmp/cmp)
 %prep
 %goprep
 %patch0 -p1
-#%patch1 -p1
+%patch1 -p1
 
 %build
 %gobuild -o %{gobuilddir}/bin/%{name} %{goipath}/cmd/restic
@@ -121,6 +123,9 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Wed Oct 21 2020 Steve Miller (copart) <code@rellims.com> - 0.10.0-2
+- Added upstream patch to tests (9abef3b) to resolve failed build
+
 * Wed Oct 21 2020 Steve Miller (copart) <code@rellims.com> - 0.10.0-1
 - Bumped to upstream 0.10.0
   Resolves: #1880788
