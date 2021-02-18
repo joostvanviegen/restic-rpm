@@ -1,6 +1,6 @@
 # https://github.com/restic/restic
 %global goipath         github.com/restic/restic
-Version:                0.10.0
+Version:                0.12.0
 
 %gometa
 
@@ -23,15 +23,13 @@ Backup destinations can be:
 
 
 Name:    restic
-Release: 4%{?dist}
+Release: 0%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
 Source0: %{gosource}
 #Patch0: 0001-Fix-running-tests-on-a-SELinux-enabled-system.patch
 #Patch1: backport-2652.patch
-#Upgrade github.com/cenkalti/backoff module #2934
-Patch0:  0001-Upgrade-github.com-cenkalti-backoff-module.patch
 #Move internal/fs.TestChdir to internal/test.Chdir
 #Patch1:  0001-Move-internal-fs.TestChdir-to-internal-test.Chdir.patch
 
@@ -65,9 +63,10 @@ BuildRequires: golang(golang.org/x/text/encoding/unicode)
 BuildRequires: golang(google.golang.org/api/googleapi)
 BuildRequires: golang(google.golang.org/api/storage/v1)
 BuildRequires: golang(gopkg.in/tomb.v2)
-#Updated for 0.10.0
-BuildRequires: golang(github.com/minio/minio-go/v6)
-BuildRequires: golang(github.com/minio/minio-go/v6/pkg/credentials)
+#Updated for 0.12.0
+BuildRequires: golang(github.com/minio/minio-go/v7)
+BuildRequires: golang(github.com/minio/minio-go/v7/pkg/credentials)
+BuildRequires: golang(cloud.google.com/go/storage)
 #Added for 0.10.0
 BuildRequires: golang(github.com/cespare/xxhash)
 BuildRequires: golang(github.com/dchest/siphash)
@@ -84,10 +83,6 @@ BuildRequires: golang(github.com/google/go-cmp/cmp)
 
 %prep
 %goprep
-%patch0 -p1
-#%%patch1 -p1
-#Broken tar tests, disable
-rm internal/dump/tar_test.go
 
 %build
 %gobuild -o %{gobuilddir}/bin/%{name} %{goipath}/cmd/restic
@@ -114,7 +109,7 @@ export RESTIC_TEST_FUSE=0
 
 %files
 %license LICENSE
-%doc GOVERNANCE.md CONTRIBUTING.md CHANGELOG.md README.rst
+%doc GOVERNANCE.md CONTRIBUTING.md CHANGELOG.md README.md
 %{_bindir}/%{name}
 %dir %{_datadir}/zsh/site-functions
 %{_datadir}/zsh/site-functions/_restic
@@ -125,6 +120,9 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Tue Feb 16 2021 Kevin Anderson <andersonkw2@gmail.com> - 0.12.0-0
+- Upgrade to upstream 0.12.0
+
 * Wed Jan 27 2021 Fedora Release Engineering <releng@fedoraproject.org> - 0.10.0-4
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_34_Mass_Rebuild
 
