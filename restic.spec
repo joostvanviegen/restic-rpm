@@ -1,6 +1,6 @@
 # https://github.com/restic/restic
 %global goipath         github.com/restic/restic
-Version:                0.12.0
+Version:                0.12.1
 
 %gometa
 
@@ -32,6 +32,7 @@ Source0: %{gosource}
 #Patch1: backport-2652.patch
 #Move internal/fs.TestChdir to internal/test.Chdir
 #Patch1:  0001-Move-internal-fs.TestChdir-to-internal-test.Chdir.patch
+Patch0:  f1cfb97.patch
 
 #Restic does not compile for the following archs
 ExcludeArch: s390x
@@ -83,6 +84,7 @@ BuildRequires: golang(github.com/google/go-cmp/cmp)
 
 %prep
 %goprep
+%patch0 -p1
 
 %build
 %gobuild -o %{gobuilddir}/bin/%{name} %{goipath}/cmd/restic
@@ -120,6 +122,10 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Thu Jan 20 2022 Steve Miller (copart) <code@rellims.com> - 0.12.1-1
+- Upgrade to upstream 0.12.1
+- Added upstream patch to tests (f1cfb97) for Go >= 1.16.10
+
 * Fri Jul 23 2021 Fedora Release Engineering <releng@fedoraproject.org> - 0.12.0-1
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_35_Mass_Rebuild
 

@@ -12,3 +12,5 @@
 /restic-0.10.0.tar.gz
 /0001-Move-internal-fs.TestChdir-to-internal-test.Chdir.patch
 /restic-0.12.0.tar.gz
+/restic-0.12.1.tar.gz
+/f1cfb97.patch
