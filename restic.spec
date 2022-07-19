@@ -23,7 +23,7 @@ Backup destinations can be:
 
 
 Name:    restic
-Release: 3%{?dist}
+Release: 4%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
@@ -122,6 +122,10 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Tue Jul 19 2022 Maxwell G <gotmax@e.email> - 0.12.1-4
+- Rebuild for CVE-2022-{1705,32148,30631,30633,28131,30635,30632,30630,1962} in
+  golang
+
 * Sat Jun 18 2022 Robert-André Mauchin <zebob.m@gmail.com> - 0.12.1-3
 - Rebuilt for CVE-2022-1996, CVE-2022-24675, CVE-2022-28327, CVE-2022-27191,
   CVE-2022-29526, CVE-2022-30629
