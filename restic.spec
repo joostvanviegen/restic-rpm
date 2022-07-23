@@ -23,7 +23,7 @@ Backup destinations can be:
 
 
 Name:    restic
-Release: 4%{?dist}
+Release: 5%{?dist}
 Summary: Fast, secure, efficient backup program
 URL:     %{gourl}
 License: BSD
@@ -122,6 +122,9 @@ export RESTIC_TEST_FUSE=0
 
 
 %changelog
+* Sat Jul 23 2022 Fedora Release Engineering <releng@fedoraproject.org> - 0.12.1-5
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild
+
 * Tue Jul 19 2022 Maxwell G <gotmax@e.email> - 0.12.1-4
 - Rebuild for CVE-2022-{1705,32148,30631,30633,28131,30635,30632,30630,1962} in
   golang
